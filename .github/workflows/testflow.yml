@@ -1,5 +1,31 @@
+name: testflow
 on:
   push:
-    branches: [ main ]
+    paths:
+        - 'test-app/*'
+        - 'test-app/**'
+        - '.github/workflows/testflow.yml'
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    paths:
+        - 'test-app/*'
+        - 'test-app/**'
+        - '.github/workflows/testflow.yml'
+    branches:
+      - main
+
+concurrency:
+  group: testflow
+  cancel-in-progress: false
+
+
+jobs:
+  pull_request_check:
+    name: Pull Request
+    if: github.event_name == 'pull_request'
+
+
+  dev_deploy:
+    name: Dev Env Deploy
+    if: ${{ always() && github.ref == 'refs/heads/main' && github.event_name == 'push' }}
