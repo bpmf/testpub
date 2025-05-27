@@ -2,12 +2,12 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - aws --version
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo COMMIT_HASH = $COMMIT_HASH
+      - printenv
   build:
     commands:
-      - echo Build started on `date`
+      - printenv
       - DIFF_FILES=$(git diff --name-only $CODEBUILD_RESOLVED_SOURCE_VERSION $CODEBUILD_WEBHOOK_PREV_COMMIT)
       - echo DIFF_FILES = $DIFF_FILES
   post_build:
