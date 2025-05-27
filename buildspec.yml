@@ -7,7 +7,7 @@ phases:
       - printenv
   build:
     commands:
-      - printenv
+      - git fetch origin $CODEBUILD_WEBHOOK_PREV_COMMIT
       - DIFF_FILES=$(git diff --name-only $CODEBUILD_RESOLVED_SOURCE_VERSION $CODEBUILD_WEBHOOK_PREV_COMMIT)
       - echo DIFF_FILES = $DIFF_FILES
   post_build:
