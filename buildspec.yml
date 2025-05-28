@@ -7,7 +7,7 @@ phases:
       # - echo COMMIT_HASH = $COMMIT_HASH
       # - echo printenv
       - pip install sqlfluff
-      - sqlfluff lint .
+      - sqlfluff lint . --dialect ansi
   build:
     commands:
       - |
