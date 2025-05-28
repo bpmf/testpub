@@ -2,11 +2,13 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo "Checking source code"
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo COMMIT_HASH = $COMMIT_HASH
       - printenv
   build:
     commands:
+      - [[ $CODEBUILD_WEBHOOK_EVENT != "PUSH" ]] && exit 0
       - git fetch origin $CODEBUILD_WEBHOOK_PREV_COMMIT
       - DIFF_FILES=$(git diff --name-only $CODEBUILD_RESOLVED_SOURCE_VERSION $CODEBUILD_WEBHOOK_PREV_COMMIT)
       - echo DIFF_FILES = $DIFF_FILES
