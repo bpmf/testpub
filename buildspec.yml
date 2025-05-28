@@ -3,9 +3,11 @@ phases:
   pre_build:
     commands:
       - echo "Checking source code"
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - echo COMMIT_HASH = $COMMIT_HASH
-      - printenv
+      # - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      # - echo COMMIT_HASH = $COMMIT_HASH
+      # - echo printenv
+      - pip install sqlfluff
+      - sqlfluff lint . --dialect ansi
   build:
     commands:
       - |
