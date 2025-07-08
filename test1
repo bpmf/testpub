@@ -1,7 +1,8 @@
-f change squash8 sqush 6 commit5 commit4 bdr
+f change merge9 squash8 sqush 6 commit5 commit4 bdr
 y
-add frm try-prod branch, commit2; append this line; appended in commit4;
+add from try-prd branch, commit2; append this line; appended in commit4;
 comnit5 added commit 4
-added commmit5
+added commit5
 add squash6
 add squash8
+add merge9
